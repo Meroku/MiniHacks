@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Pass</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Passes</value>
+    </caseValues>
+    <fields>
+        <label><!-- Conference --></label>
+        <name>Conference__c</name>
+        <relationshipLabel><!-- Passes --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Discount --></label>
+        <name>Discount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization Name --></label>
+        <name>Organization_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price(Hidden) --></label>
+        <name>Price_Hidden__c</name>
+    </fields>
+    <fields>
+        <help><!-- Don&apos;t input any value in this field, because we wouldn&apos;t use it. --></help>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>Organization</masterLabel>
+            <translation><!-- Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal</masterLabel>
+            <translation><!-- Personal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIP</masterLabel>
+            <translation><!-- VIP --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- No more available tickets. --></errorMessage>
+        <name>Full_House</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sorry, but this Conference is over. --></errorMessage>
+        <name>No_past_dates_registraition</name>
+    </validationRules>
+</CustomObjectTranslation>
