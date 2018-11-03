@@ -19,9 +19,8 @@ trigger DynamiSOQL on Car__c (before insert) {
                     if(car.get(lookupName) != null && car.get(lookupField) == null) {
                         String RecordName = car.get(lookupName).toString();
                         
-                        //String lookupId = SObjectUtil.selectIdOfLookup(lookupField, RecordName);
                         
-                        List<sObject> Record = Database.query('SELECT Id FROM ' + lookupField + ' WHERE Name = :RecordName');
+                        List<sObject> Record = SObjectUtil.selectIdOfLookup(lookupField, RecordName);
                         
                         
                         /*saving id of manufacturer__c if there are more than one model with non-unique Name*/
