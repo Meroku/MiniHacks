@@ -8,20 +8,18 @@ trigger DynamiSOQL on Car__c (before insert) {
             
             SObjectField field = fieldMap.get(key);      // real field
             
-            if (field.getDescribe().getType() == DisplayType.String && field.getDescribe().getName().endsWith('__c')) { 
+            if (field.getDescribe().getName().endsWith('__c')) { 
                 
-                String lookupName = field.getDescribe().getName();
+                String lookupName = (String)field.getDescribe().getName();
                 String lookupField = lookupName.substringBefore('_') + '__c';
                 
                 /*If lookup exist in our object find it, if not skip*/
                 if(SObjectUtil.isObjectExist(lookupField)) {
                     
                     if(car.get(lookupName) != null && car.get(lookupField) == null) {
-                        String RecordName = car.get(lookupName).toString();
                         
-                        
+                        String RecordName = String.valueOf(car.get(lookupName)); 
                         List<sObject> Record = SObjectUtil.selectIdOfLookup(lookupField, RecordName);
-                        
                         
                         /*saving id of manufacturer__c if there are more than one model with non-unique Name*/
                         if (lookupField.equals('Manufacturer__c')) {
@@ -41,8 +39,9 @@ trigger DynamiSOQL on Car__c (before insert) {
                                 car.addError('Not found lookup name!');
                             }   
                         }
-                    } else if(car.get(lookupName) == null && car.get(lookupField) != null) {
-                        List<sObject> Record = Database.query('SELECT Name FROM ' + lookupField);
+                    } else if(field.getDescribe().getType() == DisplayType.String && car.get(lookupName) == null && car.get(lookupField) != null) {
+                        String idOfLookup = car.get(lookupField).toString();
+                        List<sObject> Record = Database.query('SELECT Name FROM ' + lookupField + ' WHERE Id = :idOfLookup');
                         car.put(lookupName, (String)Record[0].get('Name'));
                     }        
                 }
