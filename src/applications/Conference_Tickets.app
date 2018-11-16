@@ -9,6 +9,7 @@
     <navType>Standard</navType>
     <tabs>Conference__c</tabs>
     <tabs>Pass__c</tabs>
+    <tabs>Food_Choice__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Conference_Tickets_UtilityBar</utilityBar>
 </CustomApplication>
